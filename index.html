@@ -21,9 +21,10 @@
             --beezian: #FFD700; /* Gold */
             --arundel: #2E8B57; /* Darker Green (Syndicate) */
             --carrara: #b0b0b0; /* Iron/Grey */
-            --berhox: #d13838;  /* Crimson Red (Talent) */
+            --hoxian: #d13838;  /* Crimson Red (Talent) */
             --kurai: #9b59b6;   /* Purple (Lazy) */
             --bopian: #20B2AA;  /* Light Sea Green/Teal (Slow) */
+            --bibtopian: #ff4500; /* Fiery OrangeRed */
         }
 
         * {
@@ -36,6 +37,7 @@
             background-color: #1a1a1a;
             color: var(--mc-text);
             font-family: 'Inter', sans-serif;
+            /* Standard Overworld Background */
             background-image: 
                 linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
                 url('https://media.discordapp.net/attachments/1385469518742290595/1445392505561419930/2025-12-02_22.33.34.png?ex=6930d6eb&is=692f856b&hm=a227d0a45548826339d2e3a9ee5d13f01f7eb8dadd01d644d8d13e27b336acf3&=&format=webp&quality=lossless&width=2242&height=1262'); 
@@ -43,6 +45,16 @@
             background-attachment: fixed;
             background-position: center;
             overflow-x: hidden;
+            /* Slower, smoother transition for Nether switch (1.5s) */
+            transition: background-image 1.5s ease-in-out;
+        }
+
+        /* --- NETHER MODE TRANSITION STATE --- */
+        body.nether-mode {
+            background-image: 
+                linear-gradient(rgba(100, 0, 0, 0.9), rgba(40, 0, 0, 0.95)), /* Stronger Red tint */
+                /* Nether Background Image Placeholder */
+                url('https://pa1.aminoapps.com/6030/329f67689e28e85748b69ecfc39022ca8a1885e0_hq.gif');
         }
 
         h1, h2, h3, .mc-font {
@@ -191,6 +203,13 @@
                 inset 2px 2px 0px rgba(255,255,255,0.1),
                 inset -2px -2px 0px rgba(0,0,0,0.5),
                 4px 4px 0px rgba(0,0,0,0.5);
+            transition: border-color 0.5s ease;
+        }
+
+        /* Specific style for Bibtopian row when active */
+        .faction-row#bibtopian-section.visible {
+             border-color: var(--bibtopian);
+             box-shadow: 0 0 30px rgba(255, 69, 0, 0.3);
         }
 
         .faction-row.reverse {
@@ -203,6 +222,23 @@
             border: 4px solid var(--mc-stone);
             overflow: hidden;
             position: relative;
+        }
+
+        /* Custom Flame Border Effect for Bibtopians */
+        .faction-img-container.bibtopian-border {
+            border: 4px solid #ff4500;
+            /* Layered shadows to create a pulsing flame glow */
+            box-shadow: 
+                0 0 10px #ff8c00, 
+                0 0 20px #ff4500, 
+                0 0 30px #ff0000,
+                inset 0 0 10px #ff8c00;
+            animation: flame-pulse 2s infinite alternate;
+        }
+
+        @keyframes flame-pulse {
+            from { box-shadow: 0 0 10px #ff8c00, 0 0 20px #ff4500, 0 0 30px #ff0000; }
+            to   { box-shadow: 0 0 15px #ff8c00, 0 0 25px #ff5000, 0 0 40px #ff2200; }
         }
 
         .faction-img {
@@ -318,8 +354,8 @@
     <header>
         <div class="logo mc-font">S10: JONDIQUE</div>
         <nav style="display: flex; gap: 15px;">
-            <a href="charliebop30timer" target="_blank" class="nav-btn">CHRONOMETER</a>
-            <a href="watchnow" target="_blank" class="nav-btn">WATCH WOJD</a>
+            <a href="[URL_TO_CHARLIEBOP_TIMER_PAGE]" target="_blank" class="nav-btn">CHRONOMETER</a>
+            <a href="[URL_TO_WOJD_WATCH_PAGE]" target="_blank" class="nav-btn">WATCH WOJD</a>
             <a href="https://discord.gg/RVMDcWhdhV" target="_blank" class="nav-btn">JOIN DISCORD</a>
         </nav>
     </header>
@@ -362,7 +398,7 @@
             <div class="faction-info">
                 <h3 class="faction-title mc-font" style="color: var(--arundel);">ARUNDEL (DARRWEN'S DOMAIN)</h3>
                 <p class="faction-desc">
-                    Arundel was once the picture of suburban perfection, known for its pristine lawns and elegant builds. That dream is dead. **Darrwen**, a ruthless gang warlord, arrived and seized the territory. Now, the manicured lawns hide a dark secret. Arundel has become the capital of the black market—a **drug and weapon empire** where illicit potions are brewed in hidden basements and illegal enchantments are forged in backyards. It is a beautiful facade covering a rot of crime.
+                    Arundel was once the picture of suburban perfection, known for its pristine lawns and elegant builds. That dream is dead. <strong>Darrwen</strong>, a ruthless gang warlord, arrived and seized the territory. Now, the manicured lawns hide a dark secret. Arundel has become the capital of the black market—a <strong>drug and weapon empire</strong> where illicit potions are brewed in hidden basements and illegal enchantments are forged in backyards. It is a beautiful facade covering a rot of crime.
                 </p>
             </div>
         </div>
@@ -374,7 +410,7 @@
             <div class="faction-info">
                 <h3 class="faction-title mc-font" style="color: var(--carrara);">CARRARA (The Iron Enclave)</h3>
                 <p class="faction-desc">
-                    A sprawling industrial complex of stone and iron. They are the undisputed masters of trade, redstone machinery, and enchanting. In Carrara, everything has a price, and loyalty is bought with diamonds. They view Arundel as dangerous competition and the **Hoxians as overrated**.
+                    A sprawling industrial complex of stone and iron. They are the undisputed masters of trade, redstone machinery, and enchanting. In Carrara, everything has a price, and loyalty is bought with diamonds. They view Arundel as dangerous competition and the <strong>Hoxians as overrated</strong>.
                 </p>
             </div>
         </div>
@@ -392,13 +428,13 @@
         </div>
 
         <div class="faction-row">
-            <div class="faction-img-container" style="border-color: var(--berhox);">
+            <div class="faction-img-container" style="border-color: var(--hoxian);">
                 <img src="https://media.discordapp.net/attachments/1385469077379743806/1443949784254648332/cold_asl.jpg?ex=6930dd47&is=692f8bc7&hm=7524a72b63dbe491c24d533c6eebdcea55d3c1ae2b190bd74f890c8c5f772357&=&format=webp&width=768&height=1365" alt="Hoxian Strategy Room" class="faction-img">
             </div>
             <div class="faction-info">
-                <h3 class="faction-title mc-font" style="color: var(--berhox);">HOXIANS (THE WINNER'S ARCANA)</h3>
+                <h3 class="faction-title mc-font" style="color: var(--hoxian);">HOXIANS (THE WINNER'S ARCANA)</h3>
                 <p class="faction-desc">
-                    The **Hoxians** are the undisputed masters of non-combative excellence. They are the server's **second most powerful** collective, achieving dominance not through PVP, but through sheer talent and ability in architecture, Redstone engineering, and economic strategy. Their leader, **Berhox**, is known across Jondique simply as "**The Winner**"—a title earned through a series of tactical victories and unknown maneuvers that always leave his enemies utterly defeated.
+                    The <strong>Hoxians</strong> are the undisputed masters of non-combative excellence. They are the server's <strong>second most powerful</strong> collective, achieving dominance not through PVP, but through sheer talent and ability in architecture, Redstone engineering, and economic strategy. Their leader, <strong>Berhox</strong>, is known across Jondique simply as "<strong>The Winner</strong>"—a title earned through a series of tactical victories and unknown maneuvers that always leave his enemies utterly defeated.
                 </p>
             </div>
         </div>
@@ -410,7 +446,19 @@
             <div class="faction-info">
                 <h3 class="faction-title mc-font" style="color: var(--kurai);">KURAIANS (THE BEDRIDDEN DIPLOMATS)</h3>
                 <p class="faction-desc">
-                    The **Kuraians** have fully embraced sloth and are undeniably the laziest faction on the server. They operate from deep, comfortable bases only to avoid the hassle of the surface. Their leader, **Kurai**, is a cat obsessed with maximizing comfort, demanding a steady supply of frappes and large fries. Their entire strategic contribution relies solely on their powerful, yet exhausted, ally **Dxvo**, who grudgingly carries the entire faction's weight.
+                    The <strong>Kuraians</strong> have fully embraced sloth and are undeniably the laziest faction on the server. They operate from deep, comfortable bases only to avoid the hassle of the surface. Their leader, <strong>Kurai</strong>, is a cat obsessed with maximizing comfort, demanding a steady supply of frappes and large fries. Their entire strategic contribution relies solely on their powerful, yet exhausted, ally <strong>Dxvo</strong>, who grudgingly carries the entire faction's weight.
+                </p>
+            </div>
+        </div>
+
+        <div class="faction-row" id="bibtopian-section">
+            <div class="faction-img-container bibtopian-border">
+                <img src="https://cdn.discordapp.com/attachments/1262729877233336435/1308085324580261908/image0.gif?ex=6930fa24&is=692fa8a4&hm=753b14a1f0cdcdb0a507bf5a669f540ed7d7688e6830d59de731aa0a304ef06c&" alt="Bibbo in the Nether" class="faction-img">
+            </div>
+            <div class="faction-info">
+                <h3 class="faction-title mc-font" style="color: var(--bibtopian);">THE BIBTOPIANS (The Grief Lords)</h3>
+                <p class="faction-desc">
+                    Led by the infamous <strong>Bibbo</strong>, the most aggressive PVPer on the server, this faction exists solely to cause chaos. They are griefers, raiders, and agents of pure destruction. They don't want territory; they want your tears. If you see flint and steel, Bibbo is near. They are widely considered "the worst," a title they wear with pride as they burn the world down around them.
                 </p>
             </div>
         </div>
@@ -467,18 +515,28 @@
             });
         }
 
+        // Scroll Transitions & Nether Mode Trigger
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                // Standard fade-in for all sections
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
-            });
-        }, { threshold: 0.15 });
 
-        document.querySelectorAll('.section').forEach((section) => {
-            observer.observe(section);
+                // Special check for Bibtopian section to trigger Nether Mode
+                if (entry.target.id === 'bibtopian-section') {
+                    if (entry.isIntersecting) {
+                        document.body.classList.add('nether-mode');
+                    } else {
+                        document.body.classList.remove('nether-mode');
+                    }
+                }
+            });
+        }, { threshold: 0.2 }); // Increased threshold slightly for better trigger timing
+
+        document.querySelectorAll('.section, .faction-row').forEach((el) => {
+            observer.observe(el);
         });
     </script>
 </body>
 </html>
-
