@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is Charliebop30 Done Yet?</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #eeeeee;
+            font-family: 'VT323', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            background-image: radial-gradient(#2c2c2c 15%, transparent 16%), radial-gradient(#2c2c2c 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 3rem;
+            border: 4px solid #787878;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .big-answer {
+            font-size: 6rem;
+            color: #ff5555; /* Minecraft Red */
+            margin: 0;
+            text-shadow: 4px 4px 0px #3a0000;
+            line-height: 1;
+        }
+
+        /* --- TIMER STYLES --- */
+        .timer-box {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: #3a3a3a;
+            padding: 15px;
+            border: 2px solid #57e559; /* Minecraft Green */
+            min-width: 80px;
+            box-shadow: 4px 4px 0px #000;
+        }
+
+        .number {
+            font-size: 3rem;
+            display: block;
+            color: #57e559;
+        }
+
+        .label {
+            font-size: 1.2rem;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        /* --- PROGRESS BAR STYLES --- */
+        .progress-container {
+            margin: 30px auto;
+            width: 90%;
+            text-align: left;
+        }
+        .progress-label {
+            color: #ddd;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        .progress-bar-bg {
+            background: #333;
+            border: 2px solid #555;
+            height: 30px;
+            position: relative;
+        }
+        .progress-bar-fill {
+            background: #57e559;
+            width: 1.4%; /* Stuck forever */
+            height: 100%;
+            box-shadow: 2px 0px 0px #3a3a3a inset;
+        }
+        .progress-percent {
+            text-align: right;
+            font-size: 1rem;
+            color: #57e559;
+            margin-top: 5px;
+        }
+
+        /* --- BUTTON & ESTIMATE STYLES --- */
+        .mc-button {
+            background-color: #7d7d7d;
+            border: 2px solid #000;
+            border-top: 2px solid #aaa;
+            border-left: 2px solid #aaa;
+            color: #fff;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-shadow: 2px 2px 0 #000;
+            width: 100%;
+            max-width: 300px;
+        }
+        .mc-button:active {
+            border: 2px solid #000;
+            border-bottom: 2px solid #aaa;
+            border-right: 2px solid #aaa;
+            background-color: #6e6e6e;
+            transform: translateY(2px);
+        }
+
+        .estimate-display {
+            display: none; /* Hidden by default */
+            font-size: 4rem;
+            color: #ffff55;
+            margin: 2rem 0;
+            text-shadow: 3px 3px 0 #000;
+        }
+
+        .funny-status {
+            font-size: 1.4rem;
+            color: #ffff55; /* Minecraft Gold */
+            margin-top: 2rem;
+            font-style: italic;
+            min-height: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Is Charliebop30's build done?</h1>
+        
+        <h2 class="big-answer">NO.</h2>
+        
+        <p style="font-size: 1.4rem;">Time elapsed since the "Vision" began:</p>
+
+        <div class="timer-box" id="timerDisplay">
+            <div class="time-unit">
+                <span class="number" id="days">00</span>
+                <span class="label">Days</span>
+            </div>
+            <div class="time-unit">
+                <span class="number" id="hours">00</span>
+                <span class="label">Hours</span>
+            </div>
+            <div class="time-unit">
+                <span class="number" id="minutes">00</span>
+                <span class="label">Mins</span>
+            </div>
+            <div class="time-unit">
+                <span class="number" id="seconds">00</span>
+                <span class="label">Secs</span>
+            </div>
+        </div>
+
+        <div class="estimate-display" id="estimateDisplay">
+            CALCULATING...
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-label">Total Completion:</div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+            </div>
+            <div class="progress-percent">1.4% (Approx)</div>
+        </div>
+
+        <button class="mc-button" onclick="toggleEstimate()">Calculate Finish Date</button>
+
+        <div class="funny-status" id="excuse">
+            Current Status: Calculating dirt block placement...
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const startDate = new Date(2025, 10, 14, 20, 0, 0); 
+        
+        // Updated Builder Excuses
+        const excuses = [
+            "Realized the foundation is off by one block.",
+            "Breaking and placing the same stair block for 20 minutes.",
+            "Ran out of Spruce Trapdoors. Again.",
+            "Staring at the block palette in silence.",
+            "Terraforming a hill that didn't need terraforming.",
+            "Watching a Grian tutorial instead of building.",
+            "Fixing a creeper hole in the scaffolding.",
+            "Debating between Grey Concrete and Cyan Terracotta.",
+            "Went to get sand, got distracted by a shipwreck.",
+            "Texturing a wall that will be covered by a roof.",
+            "Waiting for the copper blocks to oxidize.",
+            "Starting a new project to procrastinate on this one.",
+            "Trying to make a circle in a square game.",
+            "Over-detailing the back of the base nobody sees.",
+            "Forgot to light up the build. Fighting zombies."
+        ];
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }
+
+        function cycleExcuse() {
+            const randomIndex = Math.floor(Math.random() * excuses.length);
+            document.getElementById("excuse").innerText = "Current Status: " + excuses[randomIndex];
+        }
+
+        // Logic for the Estimation Button
+        let isShowingEstimate = false;
+        
+        function toggleEstimate() {
+            const timerBox = document.getElementById('timerDisplay');
+            const estimateBox = document.getElementById('estimateDisplay');
+            const btn = document.querySelector('.mc-button');
+
+            if (!isShowingEstimate) {
+                // Switch to estimate view
+                timerBox.style.display = 'none';
+                estimateBox.style.display = 'block';
+                estimateBox.innerText = "CALCULATING...";
+                estimateBox.style.fontSize = "3rem";
+                btn.innerText = "Back to Reality";
+                
+                // Fake loading effect
+                setTimeout(() => {
+                    estimateBox.innerText = "ANALYZING BUILD SPEED...";
+                }, 800);
+
+                setTimeout(() => {
+                    // THE PUNCHLINE DATE
+                    estimateBox.style.fontSize = "5rem";
+                    estimateBox.innerHTML = "OCT 24<br>2085"; 
+                }, 2200);
+
+                isShowingEstimate = true;
+            } else {
+                // Switch back to timer
+                timerBox.style.display = 'flex';
+                estimateBox.style.display = 'none';
+                btn.innerText = "Calculate Finish Date";
+                isShowingEstimate = false;
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+        setInterval(cycleExcuse, 4000);
+        cycleExcuse();
+    </script>
+</body>
+</html>
