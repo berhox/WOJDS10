@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Jondique Assembly - Legal Floor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mc-green: #56ae57;
+            --mc-dirt: #8b5f36;
+            --mc-stone: #757575;
+            --mc-obsidian: #121016;
+            --mc-text: #f0f0f0;
+            --un-blue: #4169E1;
+            --security-gold: #FFD700;
+            --status-passed: #56ae57;
+            --status-vetoed: #d13838;
+            --status-draft: #FFAA00;
+            /* New Colors for Furniture */
+            --wood-dark: #4a3321;
+            --wood-light: #6d4f35;
+            --plaque-brass: #cba35a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #1a1a1a;
+            color: var(--mc-text);
+            font-family: 'Inter', sans-serif;
+            background-image: 
+                linear-gradient(rgba(20, 30, 50, 0.9), rgba(10, 10, 20, 0.95)),
+                url('https://images.unsplash.com/photo-1590053913049-598d19d67568?q=80&w=2000&auto=format&fit=crop'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        h1, h2, h3, .mc-font {
+            font-family: 'VT323', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 3px solid var(--un-blue);
+        }
+
+        .logo { font-size: 2rem; color: var(--un-blue); text-shadow: 2px 2px 0px #000; }
+
+        .nav-btn {
+            background: var(--mc-obsidian);
+            color: white;
+            border: 2px solid var(--mc-stone);
+            padding: 10px 20px;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .hero {
+            padding: 150px 20px 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--mc-stone);
+            background: rgba(0,0,0,0.3);
+        }
+
+        .hero h1 { font-size: 4.5rem; text-shadow: 4px 4px 0px #000; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+
+        /* --- Security Council (Single Member) --- */
+        .council-section {
+            background: rgba(18, 16, 22, 0.85);
+            border: 4px solid var(--security-gold);
+            padding: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+            background-image: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+        }
+
+        .council-throne {
+            background: var(--mc-obsidian);
+            border: 3px solid var(--security-gold);
+            padding: 30px;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            max-width: 500px;
+            position: relative;
+        }
+        /* Crown icon styling */
+        .council-throne::before {
+            content: '♔';
+            position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+            font-size: 4rem; color: var(--security-gold); text-shadow: 0 2px 5px #000;
+        }
+
+        .member-role { color: var(--security-gold); font-size: 1.2rem; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 3px; }
+        .member-name { font-size: 3rem; color: white; margin-bottom: 10px; text-shadow: 3px 3px 0 #000; }
+
+        /* --- VISUAL ASSEMBLY FLOOR --- */
+        .assembly-floor-container {
+            background: rgba(30, 35, 50, 0.9);
+            border: 4px solid var(--un-blue);
+            padding: 40px 20px;
+            margin-bottom: 60px;
+            /* Rounded bottom corners to suggest a hemicycle layout */
+            border-radius: 0 0 100px 100px;
+            position: relative;
+        }
+
+        .floor-header { text-align: center; margin-bottom: 40px; color: var(--un-blue); font-size: 2.5rem;}
+
+        /* PC Representatives Seating Grid */
+        .rep-seating-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 30px 20px;
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+            justify-content: center;
+        }
+
+        /* The Desk/Chair Combo */
+        .assembly-desk {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* The Avatar Image Placeholder */
+        .desk-avatar {
+            width: 70px; height: 70px;
+            background: #222;
+            border: 3px solid var(--wood-dark);
+            border-bottom: none;
+            /* Placeholder Steve Skin - Replace src with real skins if desired */
+            background-image: url('https://cravatar.eu/helmavatar/MHF_Steve/64.png');
+            background-size: cover;
+            z-index: 1;
+        }
+
+        /* The Wooden Desk Structure */
+        .desk-structure {
+            background: linear-gradient(to bottom, var(--wood-light), var(--wood-dark));
+            width: 100%;
+            height: 40px;
+            border: 3px solid var(--wood-dark);
+            border-radius: 4px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+            position: relative;
+            margin-top: -10px; /* Overlap avatar slightly */
+        }
+
+        /* The Name Plaque */
+        .desk-plaque {
+            background: linear-gradient(to right, #b48a45, var(--plaque-brass), #b48a45);
+            color: #2a1b0e;
+            font-family: 'VT323', monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 4px 8px;
+            border: 2px solid #7a5c2b;
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.4), 0 2px 5px rgba(0,0,0,0.5);
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            white-space: nowrap;
+            overflow: hidden; text-overflow: ellipsis;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+        }
+
+        /* --- Observer Pen (Dirt Section) --- */
+        .observer-pen-fence {
+            background: repeating-linear-gradient(45deg, #3b2718, #3b2718 10px, #543b26 10px, #543b26 20px);
+            border: 4px dashed var(--mc-dirt);
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+        /* "Rope" separating them */
+        .observer-pen-fence::before {
+            content: '';
+            position: absolute; top: -15px; left: 0; width: 100%; height: 10px;
+            background: repeating-linear-gradient(to right, #8b5f36, #8b5f36 20px, #6b4f36 20px, #6b4f36 40px);
+            border-radius: 5px;
+        }
+
+        .dirt-bench-grid {
+             display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;
+        }
+
+        /* Downgraded seat for observers */
+        .dirt-seat {
+            background: var(--mc-dirt);
+            border: 3px solid #594433;
+            padding: 5px;
+            width: 100px;
+        }
+        .dirt-avatar { width: 50px; height: 50px; opacity: 0.7; margin: 0 auto; border: 2px solid #3b2718; background-image: url('https://cravatar.eu/helmavatar/MHF_Steve/64.png'); background-size: cover;}
+        .dirt-plaque { font-family: 'VT323'; color: #ccc; font-size: 0.9rem; margin-top: 5px; background: rgba(0,0,0,0.3); }
+
+
+        /* --- Resolutions --- */
+        .resolution-section { margin-top: 80px; }
+        .resolution-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #222;
+            border: 2px solid var(--un-blue);
+        }
+
+        .resolution-table th { background: var(--un-blue); padding: 15px; text-align: left; }
+        .resolution-table td { padding: 15px; border-bottom: 1px solid #444; }
+
+        .status-tag { padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; text-transform: uppercase; }
+        .passed { color: var(--status-passed); border: 1px solid var(--status-passed); }
+        .vetoed { color: var(--status-vetoed); border: 1px solid var(--status-vetoed); }
+        .draft { color: var(--status-draft); border: 1px solid var(--status-draft); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo mc-font">JONDIQUE ASSEMBLY</div>
+        <nav>
+            <a href="index.html" class="nav-btn">EXIT ASSEMBLY</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1 class="mc-font">THE HIGH ASSEMBLY</h1>
+        <p>Registry of the General Assembly and the Sovereign Security Council.</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="council-section">
+            <div class="council-throne">
+                <div class="member-role mc-font">Sovereign Veto Authority</div>
+                <div class="member-name mc-font">RYBEEZ</div>
+                <p style="color: #888; font-style: italic;">"The world begins and ends at my desk."</p>
+            </div>
+        </div>
+
+        <div class="assembly-floor-container">
+            <h2 class="floor-header mc-font">GENERAL ASSEMBLY FLOOR (VOTING MEMBERS)</h2>
+            
+            <div class="rep-seating-grid">
+                <div class="assembly-desk">
+                    <div class="desk-avatar" style="background-image: url('https://cravatar.eu/helmavatar/Berhox/64.png');"></div>
+                    <div class="desk-structure">
+                        <div class="desk-plaque">BERHOX</div>
+                    </div>
+                </div>
+                <div class="assembly-desk">
+                    <div class="desk-avatar" style="background-image: url('https://cravatar.eu/helmavatar/Kurai/64.png');"></div>
+                    <div class="desk-structure">
+                        <div class="desk-plaque">KURAI</div>
+                    </div>
+                </div>
+                 <div class="assembly-desk">
+                    <div class="desk-avatar" style="background-image: url('https://cravatar.eu/helmavatar/Bibbo/64.png');"></div>
+                    <div class="desk-structure">
+                        <div class="desk-plaque">BIBBO</div>
+                    </div>
+                </div>
+                 <div class="assembly-desk">
+                    <div class="desk-avatar" style="background-image: url('https://cravatar.eu/helmavatar/SkinnyRaps/64.png');"></div>
+                    <div class="desk-structure">
+                        <div class="desk-plaque">SKINNYRAPS</div>
+                    </div>
+                </div>
+                 <div class="assembly-desk">
+                    <div class="desk-avatar" style="background-image: url('https://cravatar.eu/helmavatar/Darrwen/64.png');"></div>
+                    <div class="desk-structure">
+                        <div class="desk-plaque">DARRWEN</div>
+                    </div>
+                </div>
+                 <div class="assembly-desk">
+                    <div class="desk-avatar" style="background-image: url('https://cravatar.eu/helmavatar/Dxvo/64.png');"></div>
+                    <div class="desk-structure">
+                        <div class="desk-plaque">DXVO</div>
+                    </div>
+                </div>
+                 <div class="assembly-desk">
+                    <div class="desk-avatar" style="background-image: url('https://cravatar.eu/helmavatar/JackBlackler/64.png');"></div>
+                    <div class="desk-structure">
+                        <div class="desk-plaque">JACK BLACKLER</div>
+                    </div>
+                </div>
+                <div class="assembly-desk">
+                    <div class="desk-avatar" style="background-image: url('https://cravatar.eu/helmavatar/Wukk/64.png');"></div>
+                    <div class="desk-structure">
+                        <div class="desk-plaque">WUKK</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="observer-pen-fence">
+                <h3 class="mc-font" style="color: var(--mc-dirt); font-size: 1.5rem; background:rgba(0,0,0,0.5); display:inline-block; padding: 5px;">OBSERVER GALLERY (NON-VOTING)</h3>
+                <div class="dirt-bench-grid">
+                    <div class="dirt-seat">
+                        <div class="dirt-avatar"></div>
+                        <div class="dirt-plaque">Bailey7905</div>
+                    </div>
+                    <div class="dirt-seat">
+                        <div class="dirt-avatar"></div>
+                        <div class="dirt-plaque">Kanemodo</div>
+                    </div>
+                    <div class="dirt-seat">
+                        <div class="dirt-avatar"></div>
+                        <div class="dirt-plaque">Peri</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="resolution-section">
+            <h2 class="mc-font" style="color: var(--un-blue); font-size: 2.2rem; margin-bottom: 20px; text-align: center;">ASSEMBLY RECORDS</h2>
+            <table class="resolution-table">
+                <thead>
+                    <tr>
+                        <th width="15%">ID</th>
+                        <th width="50%">LEGISLATION</th>
+                        <th width="20%">SPONSOR</th>
+                        <th width="15%">STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="mc-font">RES-101</td>
+                        <td><strong>The Frappe Act:</strong> Mandatory subsidization of Kurai's large fries and frappes.</td>
+                        <td>Dxvo</td>
+                        <td><span class="status-tag passed">PASSED</span></td>
+                    </tr>
+                    <tr>
+                        <td class="mc-font">RES-103</td>
+                        <td><strong>Syndicate Regulation:</strong> Banning drug/weapon trade within 50 blocks of spawn.</td>
+                        <td>Berhox</td>
+                        <td><span class="status-tag vetoed">VETOED BY ARUNDEL GANG</span></td>
+                    </tr>
+                    <tr>
+                        <td class="mc-font">RES-104</td>
+                        <td><strong>The Bibbo Clause:</strong> Immediate TNT legalization during faction skirmishes.</td>
+                        <td>Bibbo</td>
+                        <td><span class="status-tag vetoed">VETOED BY RYBEEZ</span></td>
+                    </tr>
+                    <tr>
+                        <td class="mc-font">RES-106</td>
+                        <td><strong>Public Speaking Act:</strong> Allowing Console Observers the right to speak in general chat.</td>
+                        <td>Jack Blackler</td>
+                        <td><span class="status-tag draft">VOTING NOW</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid #333; margin-top: 60px;">
+        <p style="font-size: 0.9rem; color: #555; font-family: monospace;">General Assembly Registry &copy; S10 Jondique</p>
+    </footer>
+
+</body>
+</html>
