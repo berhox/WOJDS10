@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supreme Court of Jondique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:ital,wght@0,300;0,700;1,300&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --court-bg: #1a1515;
+            --text-color: #e0e0e0;
+            --folder-bg: #f5e6c8;
+            --folder-text: #2c2c2c;
+            --accent-gold: #c5a059;
+            --stamp-green: #2e8b57;
+            --stamp-red: #8b0000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--court-bg);
+            color: var(--text-color);
+            font-family: 'Merriweather', serif;
+            /* Dark Wood Background */
+            background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.8)), url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+        }
+
+        /* --- Header --- */
+        header {
+            border-bottom: 4px double var(--accent-gold);
+            padding: 30px;
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .court-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--accent-gold);
+            text-shadow: 2px 2px 0 #000;
+            margin-bottom: 10px;
+        }
+
+        .nav-bar {
+            margin-top: 20px;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+        }
+
+        .nav-link {
+            color: #aaa; text-decoration: none; margin: 0 15px; border: 1px solid #555; padding: 5px 15px; transition: 0.3s;
+        }
+        .nav-link:hover { color: #fff; border-color: #fff; }
+
+        /* --- Docket Container --- */
+        .docket-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        /* --- Case File Styling --- */
+        .case-file {
+            background-color: var(--folder-bg);
+            color: var(--folder-text);
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+            transform: rotate(-1deg); /* Slight tilt for realism */
+            border: 1px solid #d4c5a9;
+        }
+
+        .case-file::before {
+            content: "CONFIDENTIAL";
+            position: absolute; top: 20px; right: 20px;
+            font-family: 'VT323'; color: rgba(0,0,0,0.2); font-size: 2rem; transform: rotate(-15deg);
+        }
+
+        .case-header {
+            border-bottom: 2px solid #555;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .case-id { font-family: 'VT323'; font-size: 1.5rem; color: #555; }
+        .case-name { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: bold; }
+
+        /* --- STAMPS --- */
+        .stamp {
+            position: absolute;
+            top: 50%; right: 50px;
+            font-family: 'VT323', monospace;
+            font-size: 4rem;
+            border: 6px double;
+            padding: 10px 30px;
+            transform: rotate(-20deg) translateY(-50%);
+            opacity: 0.8;
+            text-transform: uppercase;
+            font-weight: bold;
+            z-index: 10;
+            mix-blend-mode: multiply;
+        }
+        .stamp-acquitted { color: var(--stamp-green); border-color: var(--stamp-green); }
+        .stamp-pending { color: #d13838; border-color: #d13838; }
+
+        /* --- Case Details --- */
+        .case-section { margin-bottom: 20px; }
+        .section-title { font-weight: bold; text-transform: uppercase; font-family: 'Cinzel'; border-bottom: 1px solid #aaa; margin-bottom: 5px; display: inline-block;}
+        
+        ul { margin-left: 20px; margin-top: 5px; }
+        li { margin-bottom: 5px; }
+
+        /* --- Interactive Accordion --- */
+        details {
+            background: rgba(0,0,0,0.05);
+            padding: 10px;
+            margin-top: 15px;
+            border: 1px dashed #999;
+            cursor: pointer;
+        }
+        summary { font-weight: bold; font-family: 'Cinzel'; }
+
+        /* Mobile */
+        @media (max-width: 800px) {
+            .case-file { padding: 20px; transform: rotate(0deg); }
+            .stamp { font-size: 2.5rem; position: relative; top: auto; right: auto; transform: rotate(-10deg); margin-bottom: 20px; display: inline-block; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="court-title">SUPREME COURT OF JONDIQUE</div>
+        <div style="font-family: 'Cinzel'; font-size: 1rem; color: #aaa;">"JUSTITIA IN FERRO" (Justice in Iron)</div>
+        <nav class="nav-bar">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="assembly.html" class="nav-link">ASSEMBLY</a>
+            <a href="charter.html" class="nav-link">CHARTER</a>
+        </nav>
+    </header>
+
+    <div class="docket-container">
+
+        <div class="case-file" style="transform: rotate(1deg); z-index: 2;">
+            <div class="stamp stamp-pending">MOTION TO DISMISS</div>
+            
+            <div class="case-header">
+                <span class="case-name">BIBBO v. BERHOX</span>
+                <span class="case-id">CASE ID: 25-002</span>
+            </div>
+
+            <div class="case-section">
+                <div class="section-title">NATURE OF SUIT</div>
+                <p>Retaliatory Charges following Case 25-001.</p>
+            </div>
+
+            <div class="case-section">
+                <div class="section-title">CHARGES FILED</div>
+                <ul>
+                    <li><strong>Count 1:</strong> Attempted Robbery</li>
+                    <li><strong>Count 2:</strong> Tampering</li>
+                    <li><strong>Count 3:</strong> Trespassing</li>
+		    <li><strong>Count 4:</strong> Sabotage</li>
+                </ul>
+            </div>
+
+            <div class="case-section">
+                <div class="section-title">DEFENSE MOTION: <em>RES JUDICATA</em></div>
+                <p>The Defense argues <strong>Double Jeopardy</strong>. The facts of this case (Berhox repairing the farm/taking iron) were already adjudicated in Case 25-001.</p>
+                <p>The Prosecutor (Bibbo) is attempting to re-litigate a settled verdict by renaming the charges. This constitutes Malicious Prosecution.</p>
+            </div>
+        </div>
+
+        <div class="case-file">
+            <div class="stamp stamp-acquitted">NOT GUILTY</div>
+            
+            <div class="case-header">
+                <span class="case-name">SKINNY RAPS & BIBBO v. BERHOX & DXVO</span>
+                <span class="case-id">CASE ID: 25-001</span>
+            </div>
+
+            <div class="case-section">
+                <div class="section-title">THE VERDICT</div>
+                <p><strong>Judge:</strong> The Rybeez</p>
+                <p><strong>Ruling:</strong> The Defendant (Berhox) is ACQUITTED of all charges regarding the theft of Iron.</p>
+            </div>
+
+            <div class="case-section">
+                <div class="section-title">ESTABLISHED PRECEDENTS</div>
+                <ul>
+                    <li><strong>The Zero Deprivation Principle:</strong> You cannot steal from a victim who has suffered no loss. Since the farm produced 0 iron before the Defendant arrived, the owner lost nothing.</li>
+            </div>
+
+            <details>
+                <summary>VIEW EVIDENCE LOG (CLICK TO EXPAND)</summary>
+                <div style="margin-top: 10px; font-size: 0.9rem;">
+                    <p><strong>Exhibit A:</strong> Witness Javo confirmed Defendant was AFK (Applying Labor).</p>
+                    <p><strong>Exhibit B:</strong> Witness Darrwen confirmed 9 Stacks of Iron generated solely during Defendant's tenure.</p>
+                    <p><strong>Exhibit C:</strong> Prosecution admitted the original owner (Cameron) destroyed the spawning mechanism.</p>
+                </div>
+            </details>
+        </div>
+
+    </div>
+
+</body>
+</html>
