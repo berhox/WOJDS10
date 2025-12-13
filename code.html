@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Charter of Jondique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:ital,wght@0,300;0,700;1,300&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0b0b;
+            --text-color: #dcdcdc;
+            --paper-bg: #181515;
+            --hoxian-red: #d13838;
+            --security-gold: #c5a059;
+            --border-color: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Merriweather', serif;
+            line-height: 1.7;
+            background-image: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), url('https://www.transparenttextures.com/patterns/dark-matter.png');
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: rgba(0,0,0,0.8);
+            border-bottom: 3px double var(--security-gold);
+            padding: 20px;
+            text-align: center;
+            font-family: 'VT323', monospace;
+            font-size: 1.3rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        nav a { color: #888; text-decoration: none; margin: 0 20px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        nav a:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        nav a.active { color: var(--hoxian-red); font-weight: bold; border-bottom: 2px solid var(--hoxian-red); }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 1px solid #333;
+        }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: var(--security-gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 #000;
+        }
+        .subtitle { font-family: 'VT323'; color: #888; font-size: 1.4rem; letter-spacing: 2px; }
+
+        /* --- CONTENT CONTAINER --- */
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- CHAPTER STYLING --- */
+        .chapter {
+            margin-bottom: 60px;
+            background: var(--paper-bg);
+            padding: 50px;
+            border: 1px solid var(--border-color);
+            border-left: 6px solid var(--security-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .chapter::before {
+            content: "§";
+            position: absolute;
+            top: 20px; right: 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
+            color: rgba(255,255,255,0.03);
+        }
+
+        .chapter h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--hoxian-red);
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- ARTICLE STYLING --- */
+        .article { margin-bottom: 40px; }
+        
+        .article-title { 
+            font-weight: bold; 
+            color: var(--security-gold); 
+            font-size: 1.3rem; 
+            margin-bottom: 10px; 
+            display: block; 
+            font-family: 'Cinzel', serif;
+        }
+        
+        .sub-clause {
+            margin-left: 20px;
+            margin-top: 10px;
+            padding-left: 15px;
+            border-left: 2px solid #444;
+            color: #bbb;
+            font-size: 0.95rem;
+        }
+
+        ul { list-style-type: none; margin-left: 10px; margin-top: 10px; }
+        li { 
+            margin-bottom: 10px; 
+            padding-left: 20px; 
+            position: relative; 
+        }
+        li::before {
+            content: "•";
+            color: var(--hoxian-red);
+            position: absolute; left: 0;
+            font-size: 1.2rem;
+            line-height: 1.5rem;
+        }
+
+        /* --- SPECIAL BOXES --- */
+        .veto-box {
+            background: rgba(197, 160, 89, 0.1);
+            border: 1px solid var(--security-gold);
+            padding: 15px;
+            margin-top: 15px;
+            font-style: italic;
+            color: #eaddcf;
+        }
+
+        .precedent-box {
+            background: rgba(209, 56, 56, 0.1);
+            border: 1px dashed var(--hoxian-red);
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            font-size: 0.9rem;
+            color: #555;
+            border-top: 1px solid #333;
+            font-family: 'VT323';
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="assembly.html">ASSEMBLY</a>
+        <a href="charter.html" class="active">THE CHARTER</a>
+        <a href="court.html">SUPREME COURT</a>
+    </nav>
+
+    <header>
+        <h1>The Charter of Jondique</h1>
+        <div class="subtitle">THE SUPREME LAW OF THE LAND</div>
+    </header>
+
+    <div class="container">
+
+        <div style="text-align: center; margin-bottom: 60px; padding: 20px; border: 1px solid #333; background: rgba(255,255,255,0.02);">
+            <p style="font-style: italic; font-size: 1.2rem; color: #ccc;">
+                "We the Players of Jondique, in order to transition from Autocracy to Order, to ensure the rights of the Builder and the Miner, and to secure the stability of the Realm, do ordain and establish this Great Charter."
+            </p>
+        </div>
+
+        <div class="chapter" style="border-left-color: #fff;">
+            <h2>CHAPTER I: THE END OF AUTOCRACY</h2>
+            
+            <div class="article">
+                <span class="article-title">Article 1: The Abdication of Absolute Power</span>
+                <p>
+                    The Server Owner (Rybeez) hereby formally relinquishes the title and status of "Dictator." 
+                    While retaining administrative ownership of the server files, Rybeez agrees that the power of <strong>/op</strong> shall no longer be used for personal enrichment, arbitrary punishment, or gameplay advantage. 
+                </p>
+                <div class="sub-clause">
+                    The Server Owner submits to the jurisdiction of the Court and the provisions of this Charter.
+                </div>
+            </div>
+
+            <div class="article">
+                <span class="article-title">Article 2: Separation of Powers</span>
+                <p>Governance shall be divided into three branches:</p>
+                <ul>
+                    <li><strong>The General Assembly:</strong> The Legislative Voice of the Playerbase.</li>
+                    <li><strong>The Security Council:</strong> The Executive Enforcers of Server Integrity.</li>
+                    <li><strong>The High Court:</strong> The Judicial Arbiters of Disputes.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="chapter" style="border-left-color: var(--hoxian-red);">
+            <h2>CHAPTER II: THE SECURITY COUNCIL</h2>
+            
+            <div class="article">
+                <span class="article-title">Article 3: Composition & The Executive Veto</span>
+                <p>The Security Council acts as the supreme executive body. It is comprised of the Server Owner and rotating 2 members from the General Assembly randomly chosen per 4 real days.</p>
+                <div class="veto-box">
+                    <strong>THE RYBEEZ CLAUSE:</strong> To ensure the ultimate stability of the realm, the Server Owner retains <strong>Absolute Veto Power</strong> over any legislation passed by the General Assembly.
+                </div>
+            </div>
+
+            <div class="article">
+                <span class="article-title">Article 4: Powers of Non-Force (Soft Power)</span>
+                <p>The Council may utilize administrative pressure to enforce the law, including:</p>
+                <ul>
+                    <li><strong>Economic Sanctions:</strong> Embargoes, trade blockades, and fines.</li>
+                    <li><strong>Asset Forfeiture:</strong> Freezing of bank accounts or claims suspected of duplication.</li>
+                    <li><strong>Civic Revocation:</strong> Stripping a player of voting rights or Statehood status.</li>
+                </ul>
+            </div>
+
+            <div class="article">
+                <span class="article-title">Article 5: Powers of Force (Hard Power)</span>
+                <p>In cases of severe criminality or existential threat, the Council is authorized to use force including but not limited to:</p>
+                <ul>
+                    <li><strong>Containment:</strong> Imprisonment in Bedrock or Obsidian facilities.</li>
+                    <li><strong>Exile:</strong> Temporary or Permanent Banning.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="chapter" style="border-left-color: var(--security-gold);">
+            <h2>CHAPTER III: THE GENERAL ASSEMBLY</h2>
+            
+            <div class="article">
+                <span class="article-title">Article 6: Universal Suffrage</span>
+                <p>
+                    The General Assembly is the sovereign voice of the people. Every active PC Player on the whitelist holds exactly <strong>One Vote</strong>. 
+                </p>
+                <div class="sub-clause">
+                    No title, rank, playtime, or wealth shall grant weighted voting power. The vote of the casual miner is equal to the vote of the wealthy industrialist.
+                </div>
+            </div>
+
+            <div class="article">
+                <span class="article-title">Article 7: Legislative Competence</span>
+                <p>The Assembly holds the sole power to draft and pass legislation regarding:</p>
+                <ul>
+                    <li><strong>Public Works:</strong> Construction of highways, nether hubs, and spawn amenities.</li>
+                    <li><strong>Statehood:</strong> The admission of new States and definition of borders.</li>
+                    <li><strong>Foreign Affairs:</strong> Declarations of War or Peace treaties with external entities.</li>
+                    <li><strong>Standardization:</strong> Establishing official currency and units of measurement.</li>
+                </ul>
+            </div>
+
+            <div class="article">
+                <span class="article-title">Article 8: Parliamentary Procedure</span>
+                <p>To ensure order, the Assembly shall operate under the following rules:</p>
+                <ul>
+                    <li><strong>The Motion:</strong> Any Member may propose a law. It must be "Seconded" by another Member to proceed to a vote.</li>
+                    <li><strong>Quorum:</strong> A vote is only valid if at least 30% of the active playerbase casts a ballot.</li>
+                    <li><strong>Filibuster:</strong> Debate on a motion may not exceed 24 hours before a mandatory vote is called.</li>
+                </ul>
+            </div>
+
+            <div class="article">
+                <span class="article-title">Article 9: Voting Thresholds</span>
+                <p>Legislation requires specific majorities to pass:</p>
+                <ul>
+                    <li><strong>Simple Resolution:</strong> 50% + 1 Vote (Standard laws, naming of roads).</li>
+                    <li><strong>Supermajority:</strong> 66% Vote (Constitutional Amendments, Impeachment of Judges).</li>
+                    <li><strong>Unanimous Consent:</strong> Required to override a Security Council Veto.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="chapter">
+            <h2>CHAPTER IV: STATEHOOD & TERRITORY</h2>
+            
+            <div class="article">
+                <span class="article-title">Article 10: Definition of a State</span>
+                <p>A State is a defined territory governed by a player or group, recognized by the General Assembly. To apply for Statehood, a territory must possess:</p>
+                <ul>
+                    <li>A designated Capital City with a Town Hall.</li>
+                    <li>Clearly defined borders (Physical Walls or Coordinate Markers).</li>
+                    <li>A distinct Banner/Flag.</li>
+                </ul>
+            </div>
+
+            <div class="article">
+                <span class="article-title">Article 11: Privileges of Statehood</span>
+                <p>Upon admission by the Assembly, a State is granted:</p>
+                <ul>
+                    <li><strong>Protection against Terraforming:</strong> Immunity from unauthorized external modification.</li>
+                    <li><strong>Representation:</strong> The right to fly their banner at Spawn.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="chapter" style="background: rgba(209, 56, 56, 0.03);">
+            <h2>CHAPTER V: RIGHTS & PRECEDENTS</h2>
+            <div style="margin-bottom: 20px; font-style: italic; color: #888;">
+                Codified following the Supreme Court Rulings of 2025 (The Iron Trials).
+            </div>
+
+            <div class="article">
+                <span class="article-title">Article 14: Due Process</span>
+                <p>No player shall be banned or stripped of property without a hearing before the Court, except in cases of immediate emergency (Active Griefing/Hacking).</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>THE CHARTER OF JONDIQUE</p>
+        <p>Ratified: December 14, 2025</p>
+        <p style="color: #444; margin-top: 10px;">"Justitia in Ferro"</p>
+    </footer>
+
+</body>
+</html>
