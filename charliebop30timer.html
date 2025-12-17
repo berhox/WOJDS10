@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is Charliebop30 Done Yet?</title>
+    <title>Charliebop30 IS DONE.</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
         body {
@@ -23,14 +23,34 @@
         }
 
         .container {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             padding: 3rem;
-            border: 4px solid #787878;
+            border: 4px solid #fecb00; /* Gold Border for Victory */
             border-radius: 4px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 50px rgba(254, 203, 0, 0.2);
             max-width: 800px;
             width: 90%;
             position: relative;
+        }
+
+        /* ACHIEVEMENT BANNER */
+        .achievement-banner {
+            background-color: #202020;
+            border: 2px solid #fff;
+            color: #ffff55;
+            padding: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 1.5rem;
+        }
+        .achievement-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #57e559;
+            margin-right: 10px;
+            border: 2px solid #fff;
         }
 
         h1 {
@@ -41,11 +61,18 @@
         }
 
         .big-answer {
-            font-size: 6rem;
-            color: #ff5555; /* Minecraft Red */
+            font-size: 8rem;
+            color: #57e559; /* VICTORY GREEN */
             margin: 0;
-            text-shadow: 4px 4px 0px #3a0000;
+            text-shadow: 4px 4px 0px #003a00;
             line-height: 1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         /* --- TIMER STYLES --- */
@@ -60,7 +87,7 @@
         .time-unit {
             background: #3a3a3a;
             padding: 15px;
-            border: 2px solid #57e559; /* Minecraft Green */
+            border: 2px solid #fecb00; /* Gold */
             min-width: 80px;
             box-shadow: 4px 4px 0px #000;
         }
@@ -68,7 +95,7 @@
         .number {
             font-size: 3rem;
             display: block;
-            color: #57e559;
+            color: #fecb00;
         }
 
         .label {
@@ -96,52 +123,22 @@
         }
         .progress-bar-fill {
             background: #57e559;
-            width: 1.4%; /* Stuck forever */
+            width: 100%; /* DONE */
             height: 100%;
             box-shadow: 2px 0px 0px #3a3a3a inset;
+            transition: width 2s ease-out;
         }
         .progress-percent {
             text-align: right;
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: #57e559;
             margin-top: 5px;
-        }
-
-        /* --- BUTTON & ESTIMATE STYLES --- */
-        .mc-button {
-            background-color: #7d7d7d;
-            border: 2px solid #000;
-            border-top: 2px solid #aaa;
-            border-left: 2px solid #aaa;
-            color: #fff;
-            font-family: 'VT323', monospace;
-            font-size: 1.5rem;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-top: 20px;
-            text-shadow: 2px 2px 0 #000;
-            width: 100%;
-            max-width: 300px;
-        }
-        .mc-button:active {
-            border: 2px solid #000;
-            border-bottom: 2px solid #aaa;
-            border-right: 2px solid #aaa;
-            background-color: #6e6e6e;
-            transform: translateY(2px);
-        }
-
-        .estimate-display {
-            display: none; /* Hidden by default */
-            font-size: 4rem;
-            color: #ffff55;
-            margin: 2rem 0;
-            text-shadow: 3px 3px 0 #000;
+            font-weight: bold;
         }
 
         .funny-status {
             font-size: 1.4rem;
-            color: #ffff55; /* Minecraft Gold */
+            color: #aaa; 
             margin-top: 2rem;
             font-style: italic;
             min-height: 1.5em;
@@ -151,23 +148,29 @@
 <body>
 
     <div class="container">
-        <h1>Is Charliebop30's build done?</h1>
         
-        <h2 class="big-answer">NO.</h2>
+        <div class="achievement-banner">
+            <span class="achievement-icon"></span>
+            ACHIEVEMENT UNLOCKED: "The Vision Realised"
+        </div>
+
+        <h1>Is Charliebop30's (exterior) build done?</h1>
         
-        <p style="font-size: 1.4rem;">Time elapsed since the "Vision" began:</p>
+        <h2 class="big-answer">YES.</h2>
+        
+        <p style="font-size: 1.4rem; color: #ccc;">Final Construction Time:</p>
 
         <div class="timer-box" id="timerDisplay">
             <div class="time-unit">
-                <span class="number" id="days">00</span>
+                <span class="number" id="days">33</span>
                 <span class="label">Days</span>
             </div>
             <div class="time-unit">
-                <span class="number" id="hours">00</span>
+                <span class="number" id="hours">02</span>
                 <span class="label">Hours</span>
             </div>
             <div class="time-unit">
-                <span class="number" id="minutes">00</span>
+                <span class="number" id="minutes">14</span>
                 <span class="label">Mins</span>
             </div>
             <div class="time-unit">
@@ -176,53 +179,29 @@
             </div>
         </div>
 
-        <div class="estimate-display" id="estimateDisplay">
-            CALCULATING...
-        </div>
-
         <div class="progress-container">
             <div class="progress-label">Total Completion:</div>
             <div class="progress-bar-bg">
                 <div class="progress-bar-fill"></div>
             </div>
-            <div class="progress-percent">1.4% (Approx)</div>
+            <div class="progress-percent">100% (IT'S OVER)</div>
         </div>
 
-        <button class="mc-button" onclick="toggleEstimate()">Calculate Finish Date</button>
-
-        <div class="funny-status" id="excuse">
-            Current Status: Calculating dirt block placement...
+        <div class="funny-status">
+            Current Status: Resting on a grateful universe.
         </div>
     </div>
 
     <script>
-        // --- CONFIGURATION ---
-        // NOTE: Date is (Year, MonthIndex, Day, Hour, Minute, Second). MonthIndex is 0-11.
-        // The date here corresponds to November 14th, 2025, 8:00 PM (20:00).
+        // --- FINAL TIME CALCULATION ---
+        // Start: November 14, 2025 at 20:00
         const startDate = new Date(2025, 10, 14, 20, 0, 0).getTime(); 
         
-        const excuses = [
-            "Realized the foundation is off by one block.",
-            "Breaking and placing the same stair block for 20 minutes.",
-            "Ran out of Spruce Trapdoors. Again.",
-            "Staring at the block palette in silence.",
-            "Terraforming a hill that didn't need terraforming.",
-            "Watching a Grian tutorial instead of building.",
-            "Fixing a creeper hole in the scaffolding.",
-            "Debating between Grey Concrete and Cyan Terracotta.",
-            "Went to get sand, got distracted by a shipwreck.",
-            "Texturing a wall that will be covered by a roof.",
-            "Waiting for the copper blocks to oxidize.",
-            "Starting a new project to procrastinate on this one.",
-            "Trying to make a circle in a square game.",
-            "Over-detailing the back of the base nobody sees.",
-            "Forgot to light up the build. Fighting zombies.",
-            "Afk-ing his shitty Skeleton Farm."
-        ];
+        // End: December 17, 2025 at 22:14 (Roughly "Now")
+        const endDate = new Date(2025, 11, 17, 22, 14, 0).getTime();
 
-        function updateTimer() {
-            const now = new Date().getTime();
-            const diff = now - startDate;
+        function setFinalTime() {
+            const diff = endDate - startDate;
 
             // --- TIME CALCULATIONS ---
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -239,57 +218,8 @@
             document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
         }
 
-        function cycleExcuse() {
-            const randomIndex = Math.floor(Math.random() * excuses.length);
-            document.getElementById("excuse").innerText = "Current Status: " + excuses[randomIndex];
-        }
-
-        // Logic for the Estimation Button
-        let isShowingEstimate = false;
-        
-        function toggleEstimate() {
-            const timerBox = document.getElementById('timerDisplay');
-            const estimateBox = document.getElementById('estimateDisplay');
-            const btn = document.querySelector('.mc-button');
-
-            if (!isShowingEstimate) {
-                // Switch to estimate view
-                timerBox.style.display = 'none';
-                estimateBox.style.display = 'block';
-                estimateBox.innerText = "CALCULATING...";
-                estimateBox.style.fontSize = "3rem";
-                btn.innerText = "Back to Reality";
-                
-                // Fake loading effect
-                setTimeout(() => {
-                    estimateBox.innerText = "ANALYZING BUILD SPEED...";
-                }, 800);
-
-                setTimeout(() => {
-                    // THE PUNCHLINE DATE
-                    estimateBox.style.fontSize = "5rem";
-                    estimateBox.innerHTML = "OCT 24<br>2085"; 
-                }, 2200);
-
-                isShowingEstimate = true;
-            } else {
-                // Switch back to timer
-                timerBox.style.display = 'flex';
-                estimateBox.style.display = 'none';
-                btn.innerText = "Calculate Finish Date";
-                isShowingEstimate = false;
-            }
-        }
-
-        // --- ROBUST INITIALIZATION ---
-        // Wait for the entire page structure to be fully loaded before running JS
-        document.addEventListener('DOMContentLoaded', () => {
-            setInterval(updateTimer, 1000);
-            updateTimer(); // Run immediately
-            setInterval(cycleExcuse, 4000);
-            cycleExcuse(); // Run immediately
-        });
+        // Run once to set the frozen numbers
+        setFinalTime();
     </script>
 </body>
 </html>
-
